@@ -882,6 +882,17 @@ app.add_middleware(BodyLimit, limit=MAX_BODY)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],
                    allow_credentials=False, expose_headers=["Retry-After"], max_age=86400)
 
+
+@app.get("/")
+def root():
+    return {
+        "status": "online",
+        "service": "Rocky Store Assistant API",
+        "docs": "/api/docs",
+        "health": "/api/health",
+    }
+
+
 router = APIRouter(prefix="/api")
 
 
